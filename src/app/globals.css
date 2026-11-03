@@ -1,0 +1,30 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root { --bg: #0B0B12; --fg: #F4F4F8; --muted: #9A9AB0; }
+.light { --bg: #F7F7FB; --fg: #0B0B12; --muted: #5B5B70; }
+
+html { background: var(--bg); color: var(--fg); scroll-behavior: smooth; }
+body { font-family: var(--font-inter), system-ui, sans-serif; -webkit-font-smoothing: antialiased; }
+
+.tabular { font-variant-numeric: tabular-nums; }
+
+/* subtle noise overlay */
+.noise::after {
+  content: ""; position: fixed; inset: 0; pointer-events: none; z-index: 50; opacity: .04;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+}
+
+.text-gradient {
+  background: linear-gradient(90deg,#833AB4,#E1306C,#FCAF45,#833AB4);
+  background-size: 200% auto;
+  -webkit-background-clip: text; background-clip: text; color: transparent;
+  animation: gradientShift 6s ease infinite;
+}
+
+:focus-visible { outline: 2px solid #E1306C; outline-offset: 3px; border-radius: 8px; }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: .001ms !important; transition-duration: .001ms !important; scroll-behavior: auto !important; }
+}
